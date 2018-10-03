@@ -25,16 +25,7 @@
   </div><!--.contenedor-->
   <p class="copyright">Todos los derechos reservados TolWebCam 2017.</p>
 </footer>
-   <?php
-   $archivo = basename($_SERVER['PHP_SELF']);
-   $pagina = str_replace(".php", "", $archivo);
-     if($pagina == 'invitados' || $pagina == 'index'){
-         echo '<script src="js/jquery.colorbox.js"></script>';
-         echo '<script src="js/jquery.waypoints.min.js"></script>';
-       } else if($pagina == 'conferencia') {
-           echo '<script src="js/lightbox.min.js"></script>';
-       }
-?>
+
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
@@ -43,7 +34,15 @@
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/jquery.countdown.min.js"></script>
     <script src="js/jquery.lettering.js"></script>
-
+    <?php
+    $archivo = basename($_SERVER['PHP_SELF']);
+    $pagina = str_replace(".php", "", $archivo);
+    if($pagina == 'invitados'){
+        echo '<script src="js/jquery.colorbox.js"></script>';
+    } else if($pagina == 'conferencia') {
+        echo '<script src="js/lightbox.min.js"></script>';
+    }
+    ?>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQiY-i-xh31D8AWL96vXuFu6413P_-UP0&callback=initMap"
 async defer></script>
  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

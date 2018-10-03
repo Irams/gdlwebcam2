@@ -3,13 +3,15 @@
     <head>
         <?php
         $archivo = basename($_SERVER['PHP_SELF']);
-        //$pagina = str_replace(".php", "", $archivo);
-        if($archivo == 'invitados.php' || $archivo == 'index.php'){
+        $pagina = str_replace(".php", "", $archivo);
+        if($pagina == 'invitados'){
             echo '<link rel="stylesheet" href="css/colorbox.css">';
-        } else if($archivo == 'conferencia.php') {
+        } else if($pagina == 'conferencia') {
             echo '<link rel="stylesheet" href="css/lightbox.min.css">';
         }
         ?>
+
+
 
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
