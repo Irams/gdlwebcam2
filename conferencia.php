@@ -8,13 +8,13 @@
     <section class="seccion contenedor">
       <h2>Galería de fotos</h2>
   <div class="galeria">
-    <a href="img/galeria/01.jpg" data-lightbox="galeria" data-title="My caption">
+    <a href="img/galeria/01.jpg" data-lightbox="galeria" rel="lightbox">
       <img src="img/galeria/thumbs/01.jpg">
     </a>
-    <a href="img/galeria/02.jpg" data-lightbox="galeria">
+    <a href="img/galeria/02.jpg" data-lightbox="galeria" rel="lightbox">
       <img src="img/galeria/thumbs/02.jpg">
     </a>
-    <a href="img/galeria/03.jpg" data-lightbox="galeria">
+    <a href="img/galeria/03.jpg" data-lightbox="galeria" rel="lightbox">
       <img src="img/galeria/thumbs/03.jpg">
     </a>
     <a href="img/galeria/04.jpg" data-lightbox="galeria">

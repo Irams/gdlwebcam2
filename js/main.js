@@ -227,7 +227,7 @@ $(function(){
     $('#segundos').html(event.strftime('%S'));
   });
 
-//CLOROBOX
+//COLOROBOX
 
     $('.invitado-info').colorbox({inline:true, width:"50%"});
 
