@@ -810,6 +810,9 @@ p.copyright{
 
 /**PÁGINAS INTERNAS**/
 /*Conferencia*/
+.navegacion-principal .activo{
+    border-bottom: 2px solid #fe4918;
+}
 .contenedor-galeria{
   padding: 150px;
 }

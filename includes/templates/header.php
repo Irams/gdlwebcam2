@@ -11,8 +11,6 @@
         }
         ?>
 
-
-
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>TL WebCam</title>
@@ -27,7 +25,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|PT+Sans" rel="stylesheet">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
-    <body>
+    <body class="<?php echo $pagina;?>">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->

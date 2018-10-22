@@ -166,7 +166,15 @@ $(function(){
   $('.nombre-sitio').lettering();
 
 
-  //Menú fijo
+
+  //Agregar clase a menú
+
+    $('body.conferencia .navegacion-principal a:contains("Conferencia")').addClass('activo');
+    $('body.calendario .navegacion-principal a:contains("Calendario")').addClass('activo');
+    $('body.invitados .navegacion-principal a:contains("Invitados")').addClass('activo');
+
+
+      //Menú fijo
 
   var windowHeight = $(window).height(); //Me da el alto de la ventana
   var barraAltura = $('.barra').innerHeight(); //Nos da la altura completa de la barra
