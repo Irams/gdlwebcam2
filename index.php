@@ -34,53 +34,74 @@
                       </a>
                   <?php } ?>
               </nav><!--.menu-programa-->
-              <div id="talleres" class="info-curso ocultar clearfix">
-                <div class="detalle-evento">
-                  <h3>HTML5, CSS3 y JavaScript</h3>
-                  <p><i class="fa fa-clock-o" aria-hidden="true"></i>16 hrs.</p>
-                  <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
-                  <p><i class="fa fa-user" aria-hidden="true"></i>Herberth I. Medina</p>
-                </div><!--.detalle-evento-->
-                <div class="detalle-evento">
-                  <h3>Responsive Web Design</h3>
-                  <p><i class="fa fa-clock-o" aria-hidden="true"></i>20 hrs.</p>
-                  <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
-                  <p><i class="fa fa-user" aria-hidden="true"></i>Herberth I. Medina</p>
-                </div><!--.detalle-evento-->
-                <a href="#" class="buttom float-rigth">Ver Todos</a>
-              </div><!--#talleres-->
+                <?php
+                try {
+                    require_once('includes/funciones/bdconexion.php');//Conexion a la BD
+                    $sql = " SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado "; //Es importante dejar un espacio entre la última letra y las comillas
+                    $sql .= " FROM eventos "; //En todos los casos!
+                    $sql .= " INNER JOIN categoria_evento ";
+                    $sql .= " ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+                    $sql .= " INNER JOIN invitados ";
+                    $sql .= " ON eventos.id_inv = invitados.invitado_id ";
+                    $sql .= " AND eventos.id_cat_evento = 1 ";
+                    $sql .= " ORDER BY evento_id LIMIT 2 ";
+                    $sql .= " SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado "; //Es importante dejar un espacio entre la última letra y las comillas
+                    $sql .= " FROM eventos "; //En todos los casos!
+                    $sql .= " INNER JOIN categoria_evento ";
+                    $sql .= " ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+                    $sql .= " INNER JOIN invitados ";
+                    $sql .= " ON eventos.id_inv = invitados.invitado_id ";
+                    $sql .= " AND eventos.id_cat_evento = 2 ";
+                    $sql .= " ORDER BY evento_id LIMIT 2 ";
+                    $sql .= " SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado "; //Es importante dejar un espacio entre la última letra y las comillas
+                    $sql .= " FROM eventos "; //En todos los casos!
+                    $sql .= " INNER JOIN categoria_evento ";
+                    $sql .= " ON eventos.id_cat_evento = categoria_evento.id_categoria ";
+                    $sql .= " INNER JOIN invitados ";
+                    $sql .= " ON eventos.id_inv = invitados.invitado_id ";
+                    $sql .= " AND eventos.id_cat_evento = 3 ";
+                    $sql .= " ORDER BY evento_id LIMIT 2 ";
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
+                }
+                ?>
 
-              <div id="conferencias" class="info-curso ocultar clearfix">
-                <div class="detalle-evento">
-                  <h3>Como ser freelancer</h3>
-                  <p><i class="fa fa-clock-o" aria-hidden="true"></i>10 hrs.</p>
-                  <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
-                  <p><i class="fa fa-user" aria-hidden="true"></i>Javier Salgado</p>
-                </div><!--.detalle-evento-->
-                <div class="detalle-evento">
-                  <h3>Tecnologías del futuro</h3>
-                  <p><i class="fa fa-clock-o" aria-hidden="true"></i>17 hrs.</p>
-                  <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
-                  <p><i class="fa fa-user" aria-hidden="true"></i>Monserrat Navarrete</p>
-                </div><!--.detalle-evento-->
-                <a href="#" class="buttom float-rigth">Ver Todos</a>
-              </div><!--#talleres-->
+                <?php echo $sql; ?>
 
-              <div id="seminarios" class="info-curso ocultar clearfix">
-                <div class="detalle-evento">
-                  <h3>Diseño UI/UX para móviles</h3>
-                  <p><i class="fa fa-clock-o" aria-hidden="true"></i>17 hrs.</p>
-                  <p><i class="fa fa-calendar" aria-hidden="true"></i>28 Octubre</p>
-                  <p><i class="fa fa-user" aria-hidden="true"></i>Roberto Perdomo</p>
-                </div><!--.detalle-evento-->
-                <div class="detalle-evento">
-                  <h3>Aprende a programar en una mañana</h3>
-                  <p><i class="fa fa-clock-o" aria-hidden="true"></i>12 hrs.</p>
-                  <p><i class="fa fa-calendar" aria-hidden="true"></i>28 Octubre</p>
-                  <p><i class="fa fa-user" aria-hidden="true"></i>Javier Salgado</p>
-                </div><!--.detalle-evento-->
-                <a href="#" class="buttom float-rigth">Ver Todos</a>
-              </div><!--#talleres-->
+                <?php $conn->multi_query($sql) ?>
+
+                <?php
+                do {
+                    $resultado = $conn->store_result();
+                    $row = $resultado->fetch_all(MYSQLI_ASSOC); ?>
+
+
+                    <?php i=0; ?>
+                        <?php foreach ($row as $evento);?>
+                    <?php if ($i % 2 == 0) { ?>
+                            <div id="<?php echo strtolower($evento['cat_evento']); ?>" class="info-curso ocultar clearfix">
+                    <?php } ?>
+                                <div class="detalle-evento">
+                                    <h3>HTML5, CSS3 y JavaScript</h3>
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>16 hrs.</p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i>Herberth I. Medina</p>
+                                </div><!--.detalle-evento-->
+                            <div class="detalle-evento">
+                                <h3>Responsive Web Design</h3>
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i>20 hrs.</p>
+                                <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
+                                <p><i class="fa fa-user" aria-hidden="true"></i>Herberth I. Medina</p>
+                            </div><!--.detalle-evento-->
+                            <a href="#" class="buttom float-rigth">Ver Todos</a>
+                            </div><!--#talleres-->
+                    <?php i++; ?>
+                        <?php endforeach; ?>
+               <?php }while($conn->more_results() && $conn->next_results());
+                ?>
+
+
+
             </div><!--.programa-evento-->
         </div><!--.contenedor-->
       </div><!--.contenido-programa-->
