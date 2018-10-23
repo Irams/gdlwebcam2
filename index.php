@@ -44,7 +44,7 @@
                     $sql .= " INNER JOIN invitados ";
                     $sql .= " ON eventos.id_inv = invitados.invitado_id ";
                     $sql .= " AND eventos.id_cat_evento = 1 ";
-                    $sql .= " ORDER BY evento_id LIMIT 2 ";
+                    $sql .= " ORDER BY evento_id LIMIT 2;";
                     $sql .= " SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado "; //Es importante dejar un espacio entre la última letra y las comillas
                     $sql .= " FROM eventos "; //En todos los casos!
                     $sql .= " INNER JOIN categoria_evento ";
@@ -52,7 +52,7 @@
                     $sql .= " INNER JOIN invitados ";
                     $sql .= " ON eventos.id_inv = invitados.invitado_id ";
                     $sql .= " AND eventos.id_cat_evento = 2 ";
-                    $sql .= " ORDER BY evento_id LIMIT 2 ";
+                    $sql .= " ORDER BY evento_id LIMIT 2;";
                     $sql .= " SELECT evento_id, nombre_evento, fecha_evento, hora_evento, cat_evento, icono, nombre_invitado, apellido_invitado "; //Es importante dejar un espacio entre la última letra y las comillas
                     $sql .= " FROM eventos "; //En todos los casos!
                     $sql .= " INNER JOIN categoria_evento ";
@@ -60,15 +60,15 @@
                     $sql .= " INNER JOIN invitados ";
                     $sql .= " ON eventos.id_inv = invitados.invitado_id ";
                     $sql .= " AND eventos.id_cat_evento = 3 ";
-                    $sql .= " ORDER BY evento_id LIMIT 2 ";
+                    $sql .= " ORDER BY evento_id LIMIT 2;";
                 } catch (\Exception $e) {
                     echo $e->getMessage();
                 }
                 ?>
 
-                <?php echo $sql; ?>
 
-                <?php $conn->multi_query($sql) ?>
+
+                <?php $conn->multi_query($sql); ?>
 
                 <?php
                 do {
@@ -76,29 +76,27 @@
                     $row = $resultado->fetch_all(MYSQLI_ASSOC); ?>
 
 
-                    <?php i=0; ?>
-                        <?php foreach ($row as $evento);?>
-                    <?php if ($i % 2 == 0) { ?>
-                            <div id="<?php echo strtolower($evento['cat_evento']); ?>" class="info-curso ocultar clearfix">
-                    <?php } ?>
+                    <?php $i=0; ?>
+                        <?php foreach ($row as $evento):?>
+                            <?php if ($i % 2 == 0) { ?>
+                                <div id="<?php echo strtolower($evento['cat_evento']); ?>" class="info-curso ocultar clearfix">
+                            <?php } ?>
                                 <div class="detalle-evento">
-                                    <h3>HTML5, CSS3 y JavaScript</h3>
-                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>16 hrs.</p>
-                                    <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
-                                    <p><i class="fa fa-user" aria-hidden="true"></i>Herberth I. Medina</p>
+                                    <h3><?php echo utf8_encode($evento['nombre_evento']); ?></h3>
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i><?php echo $evento['hora_evento']; ?></p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $evento['fecha_evento']; ?></p>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i><?php echo $evento['nombre_invitado'] . " " . $evento['apellido_invitado']; ?></p>
                                 </div><!--.detalle-evento-->
-                            <div class="detalle-evento">
-                                <h3>Responsive Web Design</h3>
-                                <p><i class="fa fa-clock-o" aria-hidden="true"></i>20 hrs.</p>
-                                <p><i class="fa fa-calendar" aria-hidden="true"></i>27 Octubre</p>
-                                <p><i class="fa fa-user" aria-hidden="true"></i>Herberth I. Medina</p>
-                            </div><!--.detalle-evento-->
-                            <a href="#" class="buttom float-rigth">Ver Todos</a>
-                            </div><!--#talleres-->
-                    <?php i++; ?>
+
+
+                            <?php if ($i % 2 == 1): ?>
+                                <a href="calendario.php" class="buttom float-rigth">Ver Todos</a>
+                                </div><!--#talleres-->
+                            <?php endif; ?>
+                    <?php $i++; ?>
                         <?php endforeach; ?>
-               <?php }while($conn->more_results() && $conn->next_results());
-                ?>
+                        <?php $resultado->free(); ?> //Libera la memoria cuando usamos multiquerys
+               <?php }  while($conn->more_results() && $conn->next_result()); ?>
 
 
 
