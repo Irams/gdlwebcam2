@@ -37,14 +37,17 @@ function initMap() {
 
   var regalo = document.getElementById('regalo');
   document.addEventListener('DOMContentLoaded',function(){
+
       //Campos datos usuarios
         var nombre = document.getElementById('nombre');
         var apellido = document.getElementById('apellido');
         var email = document.getElementById('email');
+
       //Campos pases
         var pase_dia = document.getElementById('pase_dia');
         var pase_completo = document.getElementById('pase_completo');
         var pase_dos_dias = document.getElementById('pase_dos_dias');
+
       //Botones y divs
         var calcular = document.getElementById('calcular');
         var errorDiv = document.getElementById('error');
@@ -52,7 +55,11 @@ function initMap() {
         var lista_productos = document.getElementById('lista-productos');
         var suma = document.getElementById('suma-total');
 
+        botonRegistro.disabled = true;
+
+
         if(document.getElementById('calcular')){
+
         calcular.addEventListener('click', calcularMontos);
 
         pase_dia.addEventListener('blur', mostrarDias);
@@ -130,6 +137,9 @@ function initMap() {
                 lista_productos.innerHTML += listadoProductos[i] + '<br/>';
                 }
             suma.innerHTML = "$ " + totalPagar.toFixed(2);
+
+              botonRegistro.disabled = false;
+              document.getElementById('total_pedido').value = totalPagar;
 
             }
         }
@@ -228,7 +238,7 @@ $(function(){
 
 
   //Animación cuenta regresiva
-  $('.cuenta-regresiva').countdown('2018/08/23 07:00:00',function(event){
+  $('.cuenta-regresiva').countdown('2019/08/23 07:00:00',function(event){
     $('#dias').html(event.strftime('%D'));
     $('#horas').html(event.strftime('%H'));
     $('#minutos').html(event.strftime('%M'));

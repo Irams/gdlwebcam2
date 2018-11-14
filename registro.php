@@ -1,7 +1,7 @@
 <?php include_once 'includes/templates/header.php';?>
     <section class="seccion contenedor">
       <h2>Registro de usuarios</h2>
-        <form id="registro" class="registro" action="index.html" method="post">
+        <form id="registro" class="registro" action="validar_registro.php" method="post">
           <div id="datos_usuario" class="registros caja clearfix">
             <div class="campo">
               <label for="nombre">Nombre:</label>
@@ -31,7 +31,7 @@
                   </ul>
                     <div class="orden">
                       <label for="pase_dia">Boletos deseados</label>
-                      <input type="number" min="0" id="pase_dia" size="3" placeholder="0">
+                      <input type="number" min="0" id="pase_dia" size="3" name="boletos[]" placeholder="0">
                     </div>
                 </div>
               </li>
@@ -46,7 +46,7 @@
                   </ul>
                   <div class="orden">
                     <label for="pase_completo">Boletos deseados</label>
-                    <input type="number" min="0" id="pase_completo" size="3" placeholder="0">
+                    <input type="number" min="0" id="pase_completo" size="3" name="boletos[]" placeholder="0">
                   </div>
                 </div>
               </li>
@@ -61,7 +61,7 @@
                   </ul>
                   <div class="orden">
                     <label for="pase_dos_dias">Boletos deseados</label>
-                    <input type="number" min="0" id="pase_dos_dias" size="3" placeholder="0">
+                    <input type="number" min="0" id="pase_dos_dias" size="3" name="boletos[]" placeholder="0">
                   </div>
                 </div>
               </li>
@@ -144,19 +144,19 @@
                           <div class="extras">
                             <div class="orden">
                               <label for="camisa-evento">Camisa del evento $10 <small>(Promoción 7% dto.)</small></label>
-                              <input type="number" min="0" id="camisa-evento" size="3" placeholder="0">
+                              <input type="number" min="0" id="camisa-evento" size="3" name="pedido_camisas" placeholder="0">
                             </div><!--.orden-->
                             <div class="orden">
                               <label for="etiquetas">Paquete de 10 etiquetas $2 <small>(HTML5, CSS3, JavaScript)</small></label>
-                              <input type="number" min="0" id="etiquetas" size="3" placeholder="0">
+                              <input type="number" min="0" id="etiquetas" size="3" name="pedido_etiquetas" placeholder="0">
                             </div><!--.orden-->
                             <div class="orden">
                               <label for="regalo">Seleccione un regalo</label><br>
-                              <select id="regalo" required>
+                              <select id="regalo" name="regalo" required>
                                 <option value="">--Seleccione un regalo--</option>
-                                <option value="ETI">Etiquetas</option>
-                                <option value="PUL">Pulsera</option>
-                                <option value="PLU">Pluma</option>
+                                <option value="2">Etiquetas</option>
+                                <option value="1">Pulsera</option>
+                                <option value="3">Pluma</option>
                               </select>
                             </div><!--.orden-->
                             <input type="button" id="calcular" class="buttom" value="Calcular">
@@ -170,7 +170,8 @@
                             <div id="suma-total">
 
                             </div>
-                            <input id="btnRegistro" type="submit" class="buttom" value="Pagar">
+                              <input type="hidden" name="total_pedido" id="total_pedido"x>
+                              <input id="btnRegistro" type="submit" name="submit" class="buttom" value="Pagar">
                           </div><!--.total-->
                         </div><!--.caja-->
                      </div><!--#resumen-->
